@@ -17,3 +17,15 @@ Requirements:
 ray[tune]
 stable_baselines3
 sb3-contrib
+
+## Re-running the Optimization
+To redo our PB2 runs, call cRL_HPO/run_pb2.py with your chosen arguments. An example for Acrobot:
+```
+python cRL_HPO/run_pb2.py --name acrobot_hidden --hide_context --outdir results --env CARLAcrobotEnv --context_feature link_length_1 
+```
+
+## Evaluating found schedules
+We provide the hyperparameter schedules found in our experiments in schedules/{env_name}. To rerun them, use (e.g. for Acrobot):
+```
+python cRL_HPO/play_pb2.py --outdir evaluation_acrobot_hidden --env CARLAcrobotEnv --context_feature link_length_1 --policy_path <path_to_hp_policy> --seed <seed>
+```
